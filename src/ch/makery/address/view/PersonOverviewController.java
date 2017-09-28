@@ -1,6 +1,8 @@
 package ch.makery.address.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -87,6 +89,22 @@ public class PersonOverviewController {
     		postalCodeLabel.setText("");
     		cityLabel.setText("");
     		birthdayLabel.setText("");
+    	}
+    }
+
+    //Chamado para deletar uma pessoa da lista
+    @FXML
+    private void deletarPessoa(){
+    	int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
+    	if (selectedIndex >= 0){
+    	personTable.getItems().remove(selectedIndex);
+    	} else{
+    		Alert alert = new Alert(AlertType.WARNING);
+    		alert.setTitle("Nada selecionado!");
+    		alert.setHeaderText("Nenhuma pessoa selecionada!");
+    		alert.setContentText("Por favor, selecione uma pessoa na tabela!");
+
+    		alert.showAndWait();
     	}
     }
 
